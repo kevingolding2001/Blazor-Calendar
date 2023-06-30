@@ -20,7 +20,7 @@
 
 <CalendarContainer FirstDate="today" 
 	               TasksList="TasksList.ToArray()" 
-				   DisplayedView="DisplayedView.Monthly">
+				   DisplayedView="DisplayedView.Weekly">
 	<WeeklyView PriorityDisplay="@PriorityDisplay"
 				 OutsideCurrentMonthClick="OutsideCurrentMonthClick"
 				 TaskClick="TaskClick" 
@@ -49,9 +49,10 @@
 
 		TasksList = new()
 		{			 																																				
-			new Tasks { ID = 1, DateStart = today.AddDays(0).AddHours(8).AddMinutes(30), DateEnd = today.AddDays(0).AddHours(9), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
-			new Tasks { ID = 2, DateStart = today.AddDays(0).AddHours(9).AddMinutes(30), DateEnd = today.AddDays(0).AddHours(11), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
-			new Tasks { ID = 3, DateStart = today.AddDays(1).AddHours(9).AddMinutes(30), DateEnd = today.AddDays(1).AddHours(11), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
+			new Tasks { ID = 1, DateStart = today.AddDays(-3).AddHours(8).AddMinutes(30), DateEnd = today.AddDays(-3).AddHours(9), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
+			new Tasks { ID = 2, DateStart = today.AddDays(0).AddHours(9).AddMinutes(30), DateEnd = today.AddDays(0).AddHours(10), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
+			new Tasks { ID = 3, DateStart = today.AddDays(0).AddHours(10).AddMinutes(30), DateEnd = today.AddDays(0).AddHours(11), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
+			new Tasks { ID = 4, DateStart = today.AddDays(1).AddHours(12).AddMinutes(30), DateEnd = today.AddDays(1).AddHours(13), Code = "😉 CP", Color = "#19C319", Caption = "Lorem ipsum dolor sit amet" } ,
 		};
 	}
 

@@ -178,4 +178,18 @@ partial class WeeklyView : CalendarBase
         
         return $"background:{WeekDaysColor}";
     }
+
+    private static string TimeDisplay(int hour)
+    {
+        if (hour < 0 || hour > 23)
+        {
+            throw new ArgumentException("Invalid hour. Please provide a value between 0 and 23.");
+        }
+
+        string suffix = hour < 12 ? "AM" : "PM";
+        int twelveHour = hour % 12;
+        twelveHour = twelveHour == 0 ? 12 : twelveHour;
+
+        return $"{twelveHour} {suffix}";
+    }
 }

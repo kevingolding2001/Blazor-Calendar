@@ -17,6 +17,9 @@
     string? CSSbackground = null;
     string? CSSToday = null;
 
+    int startHour = 8;
+
+
     // The sorting must be done each time we redraw in case the user moves the spots
     if (TasksList != null)
     {
@@ -32,7 +35,7 @@
         <div class="hours">
 			@for (var i = 0; i < 10; i++)
 			{
-				<div>@i</div>
+				<div>@TimeDisplay(i + startHour)</div>
 			}
         </div>
     </div>

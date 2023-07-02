@@ -27,7 +27,7 @@
     grid-template-columns: repeat(7, minmax(8vw, 1fr));
     overflow: auto;
 }
-.weekly-day:nth-child(8) {
+.weekly-day:nth-child(8):not(.weekly-today) {
     border-left: 1px solid rgba(166, 168, 179, 0.12);
 }
 

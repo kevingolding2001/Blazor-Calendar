@@ -5,7 +5,7 @@
 @inherits CalendarBase
 
 @{
-    FirstDate = FirstDate.AddDays(-(int)FirstDate.DayOfWeek + 1); // Plus one to start week on Monday
+    FirstDate = FirstDate.GetStartOfWeek();
 
     DateTime LastDay = FirstDate.AddDays(7);
 
@@ -27,6 +27,18 @@
 
 <div class="@isHidden weekly-calendar" style="@Style">
         
+	<div class="timeline">
+		<div></div>
+        <div class="hours">
+			@for (var i = 0; i < 10; i++)
+			{
+				<div>@i</div>
+			}
+        </div>
+    </div>
+
+    <div class="days">
+
     @for (var i = 0; i < 7; i++)
     {
         var d = Dates.GetNumOfDay(i);
@@ -41,20 +53,30 @@
 		CSSbackground = GetBackground(_dayClick);
 		if (HighlightToday)
 		{
-			CSSToday = DayCounter == Today ? "monthly-today" : null;
+			CSSToday = DayCounter == Today ? "weekly-today" : null;
 		}
 
-		<div class="fade-in monthly-day noselect @CSSToday"
+		<div class="fade-in weekly-day noselect @CSSToday"
 			 style="@CSSbackground"
 			 ondragover="event.preventDefault();"
 			 @onclick="e => ClickDayInternal(e, _dayClick)" 
 			 @ondrop="() => HandleDayOnDrop(_dayClick)">
-			 @(DayCounter.Day.ToString())
+		 @(DayCounter.Day.ToString())
+		
+         
+		@if (i == 3)
+		{
+			<div class="shift" style="grid-row: 3 / span 3;">
+				<div>Lunch shift</div>
+			</div>
+		}
+             
 		</div>
 		DayCounter = DayCounter.AddDays(1);
     }
+    </div>
         
-    @if ( TasksList != null )
+    @if ( TasksList != null  && false)
     {
         // occupiedPosition accumulates the number of tasks in a cell
         var occupiedPosition = new TaskPosition[7]; 

@@ -2,7 +2,7 @@
 
 using System.Globalization;
 
-public sealed class Dates
+public static class Dates
 {
     public static int GetNumOfDay(int numOfDay)
     {
@@ -46,5 +46,13 @@ public sealed class Dates
         }
 
         return numOfDay;
+    }
+
+    public static DateTime GetStartOfWeek(this DateTime current)
+    {
+        DayOfWeek firstDayOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+        int diff = (7 + (current.DayOfWeek - firstDayOfWeek)) % 7;
+
+        return current.AddDays(-diff);
     }
 }

@@ -10,6 +10,7 @@
     DateTime LastDay = FirstDate.AddDays(7);
 
     DateTime DayCounter = FirstDate;
+    DateTime DayCounter2 = FirstDate;
     DateTime Today = DateTime.Today;
     string[] dayNames = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames;
     int OffsetCell = 0;
@@ -30,6 +31,7 @@
 
 <div class="@isHidden weekly-calendar" style="@Style">
         
+    @*Hours down the left.*@
 	<div class="timeline">
 		<div></div>
         <div class="hours">
@@ -40,23 +42,28 @@
         </div>
     </div>
 
+    @*The big day section on the right*@
     <div class="days">
 
+	@*The names of the day and the date, at the top.*@
     @for (var i = 0; i < 7; i++)
     {
         var d = Dates.GetNumOfDay(i);
 
         <span class="header-name noselect" style="@HeaderStyle">
-            @dayNames[d]
+            @dayNames[d] @(DayCounter.Day.ToString())
         </span> 
+		DayCounter = DayCounter.AddDays(1);
     }
-    @for (var i = 0; i < 7; i++)
+
+    @*The long columns for each day.*@
+	@for (var i = 0; i < 7; i++)
     {
-		DateTime _dayClick = DayCounter;
+		DateTime _dayClick = DayCounter2;
 		CSSbackground = GetBackground(_dayClick);
 		if (HighlightToday)
 		{
-			CSSToday = DayCounter == Today ? "weekly-today" : null;
+			CSSToday = DayCounter2 == Today ? "weekly-today" : null;
 		}
 
 		<div class="fade-in weekly-day noselect @CSSToday"
@@ -64,9 +71,9 @@
 			 ondragover="event.preventDefault();"
 			 @onclick="e => ClickDayInternal(e, _dayClick)" 
 			 @ondrop="() => HandleDayOnDrop(_dayClick)">
-		 @(DayCounter.Day.ToString())
 		
          
+		@*This is a hardcoded demo. Replace with the loop below.*@
 		@if (i == 3)
 		{
 			<div class="shift" style="grid-row: 3 / span 3;">
@@ -75,7 +82,7 @@
 		}
              
 		</div>
-		DayCounter = DayCounter.AddDays(1);
+		DayCounter2 = DayCounter2.AddDays(1);
     }
     </div>
         
